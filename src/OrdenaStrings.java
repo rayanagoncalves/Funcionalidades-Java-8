@@ -1,5 +1,6 @@
 import java.util.*;
 import java.util.function.Consumer;
+import static java.util.Comparator.comparing;
 
 public class OrdenaStrings {
     public static void main(String[] args) {
@@ -21,12 +22,15 @@ public class OrdenaStrings {
 
         palavras.sort((s1, s2) -> Integer.compare(s1.length(), s2.length()));
 
+        palavras.sort((comparing(s -> s.length())));
+        palavras.sort((comparing(String::length))); // method reference
+
         System.out.println(palavras);
 
         Consumer<String> impressor = s -> System.out.println(s);
         palavras.forEach(impressor);
 
-        palavras.forEach(s -> System.out.println(s));
+        palavras.forEach(System.out::println);
 
         new Thread(new Runnable() {
             @Override
