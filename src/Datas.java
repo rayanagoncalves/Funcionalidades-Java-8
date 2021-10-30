@@ -27,5 +27,17 @@ public class Datas {
 
         LocalTime intervalo = LocalTime.of(15, 30);
         System.out.println(intervalo);
+
+        // Exercicios
+
+        System.out.println("==== Exercicios =====");
+        LocalDate date = LocalDate.of(2099, Month.JANUARY, 25);
+        LocalDate today = LocalDate.now();
+
+        Period periodoEntreDuasDatas = Period.between(date, today);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        System.out.println( today.format(formatter));
+
     }
 }
