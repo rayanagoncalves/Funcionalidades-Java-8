@@ -1,6 +1,5 @@
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 class Curso {
@@ -40,6 +39,26 @@ public class ExemploCursos {
         Stream<String> nomes = cursos.stream().map(Curso::getNome);
 
         nomes.forEach(System.out::println);
+
+//        cursos.stream()
+//                .filter(c -> c.getAlunos() > 20)
+//                .findAny()
+//                .ifPresent(c -> System.out.println(c.getNome()));
+
+        cursos.stream()
+                .filter(c -> c.getAlunos() > 20)
+                .collect(Collectors.toMap(
+                        c -> c.getNome(),
+                        c -> c.getAlunos()
+                ))
+                .forEach((nome, alunos) -> System.out.println(nome + " tem " + alunos + " alunos"));
+
+        // calcula média de alunos de todos os cursos usando api de streams
+        OptionalDouble media = cursos.stream()
+                .mapToInt(Curso::getAlunos)
+                .average();
+
+        media.ifPresent(System.out::println);
 
     }
 }
