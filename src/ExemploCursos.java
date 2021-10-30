@@ -60,5 +60,10 @@ public class ExemploCursos {
 
         media.ifPresent(System.out::println);
 
+        // Criação de uma lista de cursos
+        List<Curso> listaCursos =  cursos.stream()
+                .filter(c -> c.getAlunos() > 50)
+                .collect(Collectors.toList());
+
     }
 }
